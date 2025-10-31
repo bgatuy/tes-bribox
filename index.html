@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BRIBOX KANPUS</title>
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+</head>
+
+<!-- Tambahkan data-page biar item bottom-nav bisa auto-aktif -->
+<body data-page="trackmate">
+  <div class="dashboard">
+    <!-- Sidebar (tetap tampil di desktop, disembunyikan di mobile via CSS) -->
+    <aside class="sidebar">
+      <h2 class="logo">
+        <img src="favicon.png" alt="Logo" class="logo-icon" />
+        BRIBOX KANPUS
+      </h2>
+
+      <nav>
+        <a href="index.html" class="active"><span class="material-icons" aria-hidden="true">settings</span> Trackmate</a>
+        <a href="appsheet.html"><span class="material-icons" aria-hidden="true">apps</span> AppSheet</a>
+        <a href="formserahterima.html"><span class="material-icons" aria-hidden="true">handshake</span> Form Serah Terima</a>
+
+        <!-- Parent collapsible Monthly Report -->
+        <button class="nav-group" type="button"
+          aria-controls="nav-monthly" aria-expanded="false"
+          onclick="
+            const t=this, m=document.getElementById('nav-monthly');
+            const ex=t.getAttribute('aria-expanded')==='true';
+            t.setAttribute('aria-expanded', String(!ex));
+            m.hidden=ex;
+          "><span class="material-icons" aria-hidden="true">event_note</span>Monthly Report</button>
+
+        <!-- Submenu Monthly -->
+        <div id="nav-monthly" class="submenu" hidden>
+          <a href="monthly-report/monthly-form.html">Monthly Form</a>
+          <a href="monthly-report/monthly-data.html">Monthly Data</a>
+        </div>
+      </nav>
+      <div class="sidebar-credit" aria-label="Project credit">
+        Web App Created By BangAtuy - 2025
+      </div>
+    </aside>
+
+    <!-- Main -->
+    <main class="main">
+      <header class="dashboard-header">
+        <button class="sidebar-toggle-btn" type="button" onclick="toggleSidebar()" aria-label="Toggle sidebar">☰</button>
+        <h1 class="page-subtitle">Trackmate</h1>
+      </header>
+
+      <section class="card">
+        <h3>Upload Form PDF Kalian Disini Lalu Pilih Lokasi Divisi!</h3>
+
+        <label for="pdfFile" class="upload-label">
+          <span class="material-icons" aria-hidden="true">picture_as_pdf</span>
+          Pilih File PDF
+        </label>
+        <input type="file" id="pdfFile" accept="application/pdf" />
+
+        <div class="form-group">
+          <label for="inputLokasi">Pilih Lokasi Divisi :</label>
+          <select id="inputLokasi">
+            <option value="">-- Pilih Lokasi --</option>
+            <option value="BRI 1 Lt. Split">BRI 1 Lt. Split</option>
+            <option value="BRI 1 Lt. 2">BRI 1 Lt. 2</option>
+            <option value="BRI 1 Lt. 3">BRI 1 Lt. 3</option>
+            <option value="BRI 1 Lt. 4">BRI 1 Lt. 4</option>
+            <option value="BRI 1 Lt. 5">BRI 1 Lt. 5</option>
+            <option value="BRI 1 Lt. 6">BRI 1 Lt. 6</option>
+            <option value="BRI 1 Lt. 7">BRI 1 Lt. 7</option>
+            <option value="BRI 1 Lt. 8">BRI 1 Lt. 8</option>
+            <option value="BRI 1 Lt. 9">BRI 1 Lt. 9</option>
+            <option value="BRI 1 Lt. 10">BRI 1 Lt. 10</option>
+            <option value="BRI 1 Lt. 11">BRI 1 Lt. 11</option>
+            <option value="BRI 1 Lt. 12">BRI 1 Lt. 12</option>
+            <option value="BRI 1 Lt. 13">BRI 1 Lt. 13</option>
+            <option value="BRI 1 Lt. 14">BRI 1 Lt. 14</option>
+            <option value="BRI 1 Lt. 15">BRI 1 Lt. 15</option>
+            <option value="BRI 1 Lt. 16">BRI 1 Lt. 16</option>
+            <option value="BRI 1 Lt. 17">BRI 1 Lt. 17</option>
+            <option value="BRI 1 Lt. 18">BRI 1 Lt. 18</option>
+            <option value="BRI 1 Lt. 19">BRI 1 Lt. 19</option>
+            <option value="BRI 1 Lt. 20">BRI 1 Lt. 20</option>
+            <option value="BRI 2 Lt. Basement">BRI 2 Lt. Basement</option>
+            <option value="BRI 2 Lt. 2">BRI 2 Lt. 2</option>
+            <option value="BRI 2 Lt. 3">BRI 2 Lt. 3</option>
+            <option value="BRI 2 Lt. 4">BRI 2 Lt. 4</option>
+            <option value="BRI 2 Lt. 5">BRI 2 Lt. 5</option>
+            <option value="BRI 2 Lt. 6">BRI 2 Lt. 6</option>
+            <option value="BRI 2 Lt. 7">BRI 2 Lt. 7</option>
+            <option value="BRI 2 Lt. 8">BRI 2 Lt. 8</option>
+            <option value="BRI 2 Lt. 9">BRI 2 Lt. 9</option>
+            <option value="BRI 2 Lt. 10">BRI 2 Lt. 10</option>
+            <option value="BRI 2 Lt. 11">BRI 2 Lt. 11</option>
+            <option value="BRI 2 Lt. 12">BRI 2 Lt. 12</option>
+            <option value="BRI 2 Lt. 13">BRI 2 Lt. 13</option>
+            <option value="BRI 2 Lt. 14">BRI 2 Lt. 14</option>
+            <option value="BRI 2 Lt. 15">BRI 2 Lt. 15</option>
+            <option value="BRI 2 Lt. 16">BRI 2 Lt. 16</option>
+            <option value="BRI 2 Lt. 17">BRI 2 Lt. 17</option>
+            <option value="BRI 2 Lt. 18">BRI 2 Lt. 18</option>
+            <option value="BRI 2 Lt. 19">BRI 2 Lt. 19</option>
+            <option value="BRI 2 Lt. 20">BRI 2 Lt. 20</option>
+            <option value="BRI 2 Lt. 21">BRI 2 Lt. 21</option>
+            <option value="BRI 2 Lt. 22">BRI 2 Lt. 22</option>
+            <option value="BRI 2 Lt. 23">BRI 2 Lt. 23</option>
+            <option value="BRI 2 Lt. 24">BRI 2 Lt. 24</option>
+            <option value="BRI 2 Lt. 25">BRI 2 Lt. 25</option>
+            <option value="BRI 2 Lt. 26">BRI 2 Lt. 26</option>
+            <option value="BRI 2 Lt. 27">BRI 2 Lt. 27</option>
+            <option value="BRI 2 Lt. 28">BRI 2 Lt. 28</option>
+            <option value="BRI 2 Lt. 29">BRI 2 Lt. 29</option>
+            <option value="BRI 2 Lt. 30">BRI 2 Lt. 30</option>
+            <option value="BRI 2 Lt. 31">BRI 2 Lt. 31</option>
+            <option value="Gd. Parkir BRI Lt. 1">Gd. Parkir BRI Lt. 1</option>
+            <option value="Gd. Parkir BRI Lt. 5">Gd. Parkir BRI Lt. 5</option>
+            <option value="Gd. Parkir BRI Lt. 8">Gd. Parkir BRI Lt. 8</option>
+            <option value="Menara Brilian Lt. 5">Menara Brilian Lt. 5</option>
+            <option value="Menara Brilian Lt. 8">Menara Brilian Lt. 8</option>
+            <option value="Menara Brilian Lt. 9">Menara Brilian Lt. 9</option>
+            <option value="Menara Brilian Lt. 26">Menara Brilian Lt. 26</option>
+            <option value="Menara Brilian Lt. 27">Menara Brilian Lt. 27</option>
+            <option value="Menara Brilian Lt. 28">Menara Brilian Lt. 28</option>
+            <option value="Menara Brilian Lt. 29">Menara Brilian Lt. 29</option>
+            <option value="Menara Brilian Lt. 30">Menara Brilian Lt. 30</option>
+            <option value="Menara Brilian Lt. 31">Menara Brilian Lt. 31</option>
+            <option value="Menara Brilian Lt. 32">Menara Brilian Lt. 32</option>
+            <option value="Menara Brilian Lt. 33">Menara Brilian Lt. 33</option>
+            <option value="Menara Brilian Lt. 37">Menara Brilian Lt. 37</option>
+            <option value="Menara Brilian Lt. 40">Menara Brilian Lt. 40</option>
+            <option value="PSCF Ragunan Lt. 1">PSCF Ragunan Lt. 1</option>
+            <option value="PSCF Ragunan Lt. 2">PSCF Ragunan Lt. 2</option>
+            <option value="PSCF Ragunan Lt. 3">PSCF Ragunan Lt. 3</option>
+            <option value="GTI Ragunan Lt. 5">GTI Ragunan Lt. 5</option>
+            <option value="GTI Ragunan Lt. 6">GTI Ragunan Lt. 6</option>
+            <option value="GTI Ragunan Lt. 7">GTI Ragunan Lt. 7</option>
+            <option value="GTI Ragunan Lt. 8">GTI Ragunan Lt. 8</option>
+          </select>
+        </div>
+
+        <pre id="output" class="output-preview">Text akan muncul di sini...</pre>
+        <button id="copyBtn" class="btn-copy primary" type="button">Copy</button>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    function toggleSidebar() {
+      document.querySelector('.sidebar')?.classList.toggle('hidden');
+    }
+  </script>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
+  <script>
+    if (window.pdfjsLib && (!pdfjsLib.GlobalWorkerOptions.workerSrc || pdfjsLib.GlobalWorkerOptions.workerSrc === '')) {
+      pdfjsLib.GlobalWorkerOptions.workerSrc ='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    }
+  </script>
+
+  <script src="trackmate.js"></script>
+
+  <!-- ===== Bottom Navigation (muncul hanya di mobile via CSS) ===== -->
+  <nav class="bottom-nav" role="navigation" aria-label="Main">
+  <a class="bn-item bn-trackmate" href="index.html" data-page="trackmate">
+    <span class="material-icons" aria-hidden="true">settings</span>
+    <span class="bn-txt">Trackmate</span>
+  </a>
+
+  <a class="bn-item bn-appsheet" href="appsheet.html" data-page="appsheet">
+    <span class="material-icons" aria-hidden="true">apps</span>
+    <span class="bn-txt">AppSheet</span>
+  </a>
+
+  <a class="bn-item bn-serah" href="formserahterima.html" data-page="serah">
+    <span class="material-icons" aria-hidden="true">handshake</span>
+    <span class="bn-txt">Serah Terima</span>
+  </a>
+
+  <!-- Monthly parent — trigger submenu -->
+  <button class="bn-item bn-monthly-trigger" type="button"
+        aria-expanded="false" aria-controls="bn-submonthly">
+  <span class="material-icons" aria-hidden="true">event_note</span>
+  <span class="bn-txt">Monthly Report</span>
+</button>
+</nav>
+
+<!-- Submenu yang muncul di atas bottom-nav (khusus Mobile) -->
+<div class="bn-submenu" id="bn-submonthly" hidden>
+  <a href="monthly-report/monthly-form.html" class="bn-subitem">
+    <span class="material-icons" aria-hidden="true">note_add</span>
+    <span>Monthly Form</span>
+  </a>
+  <a href="monthly-report/monthly-data.html" class="bn-subitem">
+    <span class="material-icons" aria-hidden="true">view_list</span>
+    <span>Monthly Data</span>
+  </a>
+</div>
+
+  <!-- Fallback: kalau suatu halaman belum set data-page, tebak dari URL -->
+  <script>
+  (function(){
+    const trigger = document.querySelector('.bn-monthly-trigger');
+    const menu = document.getElementById('bn-submonthly');
+
+    if(trigger && menu){
+      const close = ()=>{ trigger.setAttribute('aria-expanded','false'); menu.hidden = true; };
+
+      trigger.addEventListener('click', (e)=>{
+        e.preventDefault();
+        const open = trigger.getAttribute('aria-expanded') === 'true';
+        if(open){ close(); }
+        else { trigger.setAttribute('aria-expanded','true'); menu.hidden = false; }
+      });
+
+      // klik di luar/ESC untuk nutup
+      document.addEventListener('click', (e)=>{
+        if(!menu.hidden && !menu.contains(e.target) && !trigger.contains(e.target)) close();
+      });
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+    }
+  })();
+</script>
+</body>
+</html>

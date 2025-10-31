@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BRIBOX KANPUS</title>
+  <link rel="icon" type="image/png" href="../favicon.png" />
+  <link rel="stylesheet" href="../style.css" />
+  <link rel="stylesheet" href="monthly-form.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+  <!-- guard overflow supaya konten gak meluber -->
+  <style>body[data-page="monthly"] .dashboard .main{min-width:0}</style>
+</head>
+<body data-page="monthly">
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h2 class="logo">
+        <img src="../favicon.png" class="logo-icon" alt="Logo" /> BRIBOX KANPUS
+      </h2>
+      <nav>
+        <a href="../index.html"><span class="material-icons" aria-hidden="true">settings</span> Trackmate</a>
+        <a href="../appsheet.html"><span class="material-icons" aria-hidden="true">apps</span> AppSheet</a>
+        <a href="../formserahterima.html"><span class="material-icons" aria-hidden="true">edit_note</span> Form Serah Terima</a>
+
+        <button class="nav-group" type="button" aria-controls="nav-monthly" aria-expanded="true" onclick="
+          const t=this;const m=document.getElementById('nav-monthly');
+          const ex=t.getAttribute('aria-expanded')==='true';
+          t.setAttribute('aria-expanded', String(!ex)); m.hidden=ex;
+        "><span class="material-icons" aria-hidden="true">event_note</span> Monthly Report</button>
+
+        <div id="nav-monthly" class="submenu">
+          <a href="monthly-form.html" class="active">Monthly Form</a>
+          <a href="monthly-data.html">Monthly Data</a>
+        </div>
+      </nav>
+      <div class="sidebar-credit" aria-label="Project credit">
+        Web App Created By BangAtuy - 2025
+      </div>
+    </aside>
+
+    <!-- Main wrapper -->
+    <main class="main">
+      <header class="dashboard-header">
+        <button class="sidebar-toggle-btn" type="button" aria-label="Toggle sidebar" onclick="toggleSidebar()">
+          <span aria-hidden="true">☰</span>
+        </button>
+        <h1 class="page-subtitle">Monthly Report Form</h1>
+      </header>
+
+      <!-- ======= KONTEN FORM ======= -->
+      <section class="card">
+        <h3 style="text-align:left;margin-bottom:8px">Input SPJ Harian</h3>
+        <p class="muted" style="margin:-6px 0 12px">Di Rekap di halaman Data.</p>
+
+        <form id="formReport" autocomplete="on">
+          <div class="grid">
+            <label class="field">
+              <span>Bulan <em>*</em></span>
+              <input type="month" id="bulan" name="bulan" required />
+            </label>
+            <label class="field">
+              <span>Tanggal <em>*</em></span>
+              <input type="date" id="tanggal" name="tanggal" required />
+            </label>
+
+            <label class="field">
+              <span>Teknisi <em>*</em></span>
+              <div class="row-inline"><select id="teknisi" name="teknisi" required></select></div>
+            </label>
+
+            <label class="field">
+              <span>Jenis Pekerjaan</span>
+              <select id="jenis" name="jenis">
+                <option value="Corrective Maintenance">Corrective Maintenance</option>
+                <option value="Preventive Maintenance">Preventive Maintenance</option>
+                <option value="Pekerjaan Tambahan">Pekerjaan Tambahan</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Lokasi — Dari</span>
+              <input id="lokasiDari" name="lokasiDari" placeholder="cth: Kantor Pusat" />
+            </label>
+            <label class="field">
+              <span>Lokasi — Ke</span>
+              <input id="lokasiKe" name="lokasiKe" placeholder="cth: Menara BriLian / Div. PLO" />
+            </label>
+
+            <label class="field">
+              <span>Detail Pekerjaan</span>
+              <input id="detail" name="detail" placeholder="cth: Troubleshooting" />
+            </label>
+            <label class="field">
+              <span>Status</span>
+              <select id="status" name="status">
+                <option value="Done">Done</option>
+                <option value="Pending">Pending</option>
+              </select>
+            </label>
+
+            <label class="field">
+              <span>Jam Berangkat</span>
+              <input id="jamBerangkat" name="jamBerangkat" type="time" step="60" />
+            </label>
+            <label class="field">
+              <span>Jam Masuk Laporan (auto)</span>
+              <input id="jamMasuk" name="jamMasuk" type="time" step="60" readonly />
+            </label>
+
+            <label class="field">
+              <span>Jam Tiba</span>
+              <input id="jamTiba" name="jamTiba" type="time" step="60" />
+            </label>
+            <label class="field">
+              <span>Jam Mulai Pekerjaan</span>
+              <input id="jamMulai" name="jamMulai" type="time" step="60" />
+            </label>
+
+            <label class="field">
+              <span>Jam Selesai</span>
+              <input id="jamSelesai" name="jamSelesai" type="time" step="60" />
+            </label>
+            <label class="field">
+              <span>Waktu Penyelesaian (auto)</span>
+              <input id="durasiPenyelesaian" name="durasiPenyelesaian" type="text" placeholder="0:00" readonly />
+            </label>
+
+            <label class="field">
+              <span>Jarak Tempuh (km)</span>
+              <input id="jarak" name="jarak" type="number" inputmode="decimal" step="0.1" min="0" placeholder="0" />
+            </label>
+            <label class="field">
+              <span>Waktu Tempuh (auto)</span>
+              <input id="waktuTempuh" name="waktuTempuh" type="text" placeholder="0:00" readonly />
+            </label>
+          </div>
+
+          <label class="field full">
+            <span>Keterangan</span>
+            <textarea id="keterangan" name="keterangan" rows="3" placeholder="Tambahan detail jika perlu..."></textarea>
+          </label>
+
+          <div class="toolbar">
+            <div class="toolbar-left">
+              <button type="submit" class="btn primary">Simpan</button>
+              <button type="reset" class="btn danger">Reset</button>
+            </div>
+            <div class="toolbar-right">
+              <a id="linkData" class="btn info" href="monthly-data.html">Lihat Data</a>
+            </div>
+          </div>
+        </form>
+
+        <div class="meta-inline">
+          <strong id="countBulan">0</strong>
+          <span>Entri data tersimpan untuk bulan ini</span>
+        </div>
+      </section>
+
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </main>
+  </div>
+
+  <script>
+    function toggleSidebar(){
+      const sb = document.querySelector('.sidebar');
+      const isMobile = window.matchMedia('(max-width:768px)').matches;
+      if (isMobile) sb.classList.toggle('visible'); else sb.classList.toggle('hidden');
+    }
+
+    (function(){
+      const m=document.getElementById('nav-monthly');
+      const p=document.querySelector('.nav-group[aria-controls="nav-monthly"]');
+      if(!m||!p) return;
+      const hasActive=!!m.querySelector('a.active');
+      p.setAttribute('aria-expanded', hasActive?'true':'false');
+      m.hidden=!hasActive;
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      if (document.body.dataset.page !== 'monthly') return;
+
+      const grid = document.querySelector('body[data-page="monthly"] .grid');
+      if (!grid) return;
+
+      const findFieldByLabel = (txt) => {
+        const fields = grid.querySelectorAll('.field');
+        const norm = s => s.replace(/\s+/g,' ').trim().toLowerCase();
+        const want = norm(txt);
+        return Array.from(fields).find(f => {
+          const sp = f.querySelector(':scope > span');
+          return sp && norm(sp.textContent) === want;
+        });
+      };
+
+      const fBerangkat = findFieldByLabel('Jam Berangkat');
+      const fLaporan  = findFieldByLabel('Jam Masuk Laporan (auto)');
+
+      if (fBerangkat && fLaporan && fBerangkat !== fLaporan) {
+        const placeholder = document.createElement('div');
+        grid.insertBefore(placeholder, fBerangkat);
+        grid.replaceChild(fBerangkat, fLaporan);
+        grid.insertBefore(fLaporan, placeholder);
+        grid.removeChild(placeholder);
+      }
+    });
+  </script>
+  <script src="monthly-form.js"></script>
+
+  <!-- ===== Bottom Navigation (mobile only) ===== -->
+  <nav class="bottom-nav" role="navigation" aria-label="Main">
+    <a class="bn-item bn-trackmate" href="../index.html" data-page="trackmate">
+      <span class="material-icons" aria-hidden="true">settings</span>
+      <span class="bn-txt">Trackmate</span>
+    </a>
+
+    <a class="bn-item bn-appsheet" href="../appsheet.html" data-page="appsheet">
+      <span class="material-icons" aria-hidden="true">apps</span>
+      <span class="bn-txt">AppSheet</span>
+    </a>
+
+    <a class="bn-item bn-serah" href="../formserahterima.html" data-page="serah">
+      <span class="material-icons" aria-hidden="true">handshake</span>
+      <span class="bn-txt">Serah Terima</span>
+    </a>
+
+    <!-- Monthly parent — trigger submenu -->
+    <button class="bn-item bn-monthly-trigger" type="button"
+            aria-expanded="false" aria-controls="bn-submonthly">
+      <span class="material-icons" aria-hidden="true">event_note</span>
+      <span class="bn-txt">Monthly Report</span>
+    </button>
+  </nav>
+
+  <!-- Submenu di atas bottom-nav (mobile) -->
+  <div class="bn-submenu" id="bn-submonthly" hidden>
+    <a href="monthly-form.html" class="bn-subitem">
+      <span class="material-icons" aria-hidden="true">note_add</span>
+      <span>Monthly Form</span>
+    </a>
+    <a href="monthly-data.html" class="bn-subitem">
+      <span class="material-icons" aria-hidden="true">view_list</span>
+      <span>Monthly Data</span>
+    </a>
+  </div>
+
+  <!-- Toggle submenu -->
+  <script>
+    (function(){
+      const trigger = document.querySelector('.bn-monthly-trigger');
+      const menu = document.getElementById('bn-submonthly');
+
+      if(trigger && menu){
+        const close = ()=>{ trigger.setAttribute('aria-expanded','false'); menu.hidden = true; };
+
+        trigger.addEventListener('click', (e)=>{
+          e.preventDefault();
+          const open = trigger.getAttribute('aria-expanded') === 'true';
+          if(open){ close(); }
+          else { trigger.setAttribute('aria-expanded','true'); menu.hidden = false; }
+        });
+
+        document.addEventListener('click', (e)=>{
+          if(!menu.hidden && !menu.contains(e.target) && !trigger.contains(e.target)) close();
+        });
+        document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') close(); });
+      }
+    })();
+  </script>
+  <script>
+    (function(){ 
+      const menu=document.getElementById('bn-submonthly'); 
+      if(!menu) return; const here=location.pathname.split('/').pop().toLowerCase(); 
+      menu.querySelectorAll('a.bn-subitem').forEach(a=>{ 
+        const target=(a.getAttribute('href')||'').split('/').pop().toLowerCase(); 
+        if(target===here) a.classList.add('active'); }); })();
+  </script>
+</body>
+</html>
