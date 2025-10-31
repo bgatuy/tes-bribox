@@ -1,3 +1,4 @@
+const API_BASE = (typeof localStorage !== 'undefined' && localStorage.getItem('API_BASE')) || 'http://localhost:3000';
 
 document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
@@ -10,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const password = loginForm.password.value;
 
       try {
-        const res = await fetch('http://localhost:3000/api/auth/login', {
+        const res = await fetch(`${API_BASE}/api/auth/login`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -20,15 +21,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const data = await res.json();
 
-        if (data.auth) {
+        if (res.ok && data.auth) {
           localStorage.setItem('token', data.token);
           window.location.href = 'index.html';
         } else {
-          alert(data.message || 'Login failed');
+          alert(data.message || `Login failed (${res.status})`);
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred. Please try again.');
+        alert('Tidak dapat menghubungi server. Pastikan API berjalan.');
       }
     });
   }
@@ -40,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
       const password = registerForm.password.value;
 
       try {
-        const res = await fetch('http://localhost:3000/api/auth/register', {
+        const res = await fetch(`${API_BASE}/api/auth/register`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -48,17 +49,18 @@ document.addEventListener('DOMContentLoaded', () => {
           body: JSON.stringify({ username, password })
         });
 
-        const data = await res.json();
+        let data = {};
+        try { data = await res.json(); } catch {}
 
         if (res.status === 201) {
           alert('Registration successful! Please login.');
           window.location.href = 'login.html';
         } else {
-          alert(data.message || 'Registration failed');
+          alert(data.message || `Registration failed (${res.status})`);
         }
       } catch (error) {
         console.error('Error:', error);
-        alert('An error occurred. Please try again.');
+        alert('Tidak dapat menghubungi server. Pastikan API berjalan.');
       }
     });
   }
