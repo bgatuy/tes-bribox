@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css"/>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
 </head>
-<body>
+<body data-page="appsheet">
   <div class="dashboard">
     <aside class="sidebar">
       <h2 class="logo">
@@ -34,6 +34,7 @@
           <a href="monthly-report/monthly-form.html">Monthly Form</a>
           <a href="monthly-report/monthly-data.html">Monthly Data</a>
         </div>
+        <a href="#" onclick="logout()"><span class="material-icons" aria-hidden="true">logout</span> Logout</a>
       </nav>
       <div class="sidebar-credit" aria-label="Project credit">
         Web App Created By BangAtuy - 2025
@@ -142,15 +143,18 @@
   </div>
   
   <script>
-    function toggleSidebar() {
-      document.querySelector('.sidebar').classList.toggle('hidden');}
+    window.toggleSidebar = function() {
+      document.querySelector('.sidebar').classList.toggle('hidden');
+    }
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
   <script>
     if (window.pdfjsLib && (!pdfjsLib.GlobalWorkerOptions.workerSrc || pdfjsLib.GlobalWorkerOptions.workerSrc === '')) {
-      pdfjsLib.GlobalWorkerOptions.workerSrc ='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';}
+      pdfjsLib.GlobalWorkerOptions.workerSrc ='https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+    }
   </script>
   <script src="appsheet.js"></script>
+  <script src="auth.js"></script>
 
   <!-- ===== Bottom Navigation (muncul hanya di mobile via CSS) ===== -->
   <nav class="bottom-nav" role="navigation" aria-label="Main">

@@ -486,9 +486,11 @@ copyBtn?.addEventListener("click", async () => {
       histori.push(newEntry);
       localStorage.setItem('pdfHistori', JSON.stringify(histori));
       showToast("Berhasil disimpan ke histori.", 3000, "success");
+      try { if (window.sync?.onLocalSave) window.sync.onLocalSave({ contentHash, file, entry: newEntry }); } catch {}
     } else {
       // Histori sudah ada, tapi blob sudah di-repair/overwrite
       showToast("Histori sudah ada. File diperbarui di perangkat.", 3000, "info");
+      try { if (window.sync?.onLocalSave) window.sync.onLocalSave({ contentHash, file, entry: newEntry }); } catch {}
     }
   } catch (err) {
     console.error("Copy handler error:", err);
