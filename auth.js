@@ -1,5 +1,15 @@
 const API_BASE = (typeof localStorage !== 'undefined' && localStorage.getItem('API_BASE')) || 'http://localhost:3000';
 
+function isAuthPage() {
+  try {
+    const p = (window.location.pathname || '').toLowerCase();
+    if (p.endsWith('login.html') || p.endsWith('/login') || p.endsWith('login')) return true;
+    if (p.endsWith('register.html') || p.endsWith('/register') || p.endsWith('register')) return true;
+  } catch {}
+  // Fallback by DOM presence
+  return !!document.getElementById('loginForm') || !!document.getElementById('registerForm');
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   const loginForm = document.getElementById('loginForm');
   const registerForm = document.getElementById('registerForm');
@@ -68,11 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function checkAuth() {
   const token = localStorage.getItem('token');
-  if (!token) {
-    // Redirect to login page if not on login or register page
-    if (!window.location.pathname.endsWith('login.html') && !window.location.pathname.endsWith('register.html')) {
-      window.location.href = 'login.html';
-    }
+  if (!token && !isAuthPage()) {
+    window.location.href = 'login.html';
   }
 }
 
@@ -81,7 +88,7 @@ function logout() {
   window.location.href = 'login.html';
 }
 
-// Check authentication on all pages except login and register
-if (!window.location.pathname.endsWith('login.html') && !window.location.pathname.endsWith('register.html')) {
+// Check authentication on non-auth pages (robust against routing without .html)
+if (!isAuthPage()) {
   checkAuth();
 }
